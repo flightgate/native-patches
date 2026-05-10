@@ -18,8 +18,8 @@ importers:
         specifier: 14.0.3
         version: 14.0.3
       i18n-js:
-        specifier: 4.5.1
-        version: 4.5.1
+        specifier: 4.5.3
+        version: 4.5.3
       ora:
         specifier: 9.4.0
         version: 9.4.0
@@ -661,8 +661,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  i18n-js@4.5.1:
-    resolution: {integrity: sha512-n7jojFj1WC0tztgr0I8jqTXuIlY1xNzXnC3mjKX/YjJhimdM+jXM8vOmn9d3xQFNC6qDHJ4ovhdrGXrRXLIGkA==}
+  i18n-js@4.5.3:
+    resolution: {integrity: sha512-5/tT6R9t9qlYqGhxGq9I9Ap3WKUaAMq5aRuO1gqAcUqm6xGbL0jwTAjSFjgbx935BAV8QbEzvQOzE796dUlEfA==}
 
   iconv-lite@0.7.2:
     resolution: {integrity: sha512-im9DjEDQ55s9fL4EYzOAv0yMqmMBSZp6G0VvFyTMPKWxiSBHUj9NW/qqLmXUwXrrM7AvqSlTCfvqRb0cM8yYqw==}
@@ -835,8 +835,8 @@ packages:
     resolution: {integrity: sha512-hXdUTZYIVOt1Ex//jAQi+wTZZpUpwBj/0QsOzqegb3rGMMeJiSEu5xLHnYfBrRV4RH2+OCSOO95Is/7x1WJ4bw==}
     engines: {node: '>=10'}
 
-  make-plural@8.1.0:
-    resolution: {integrity: sha512-p8EfQ2LFxnU4KGc82hOYdUplQw0eoWJLzJVKyv2GR9sd4zkjA8bLSXLEmp/qE08c/cFTZOK8j6Ex80+Wey+4PA==}
+  make-plural@7.5.0:
+    resolution: {integrity: sha512-0booA+aVYyVFoR67JBHdfVk0U08HmrBH2FrtmBqBa+NldlqXv/G2Z9VQuQq6Wgp2jDWdybEWGfBkk1cq5264WA==}
 
   merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
@@ -1885,11 +1885,11 @@ snapshots:
 
   husky@9.1.7: {}
 
-  i18n-js@4.5.1:
+  i18n-js@4.5.3:
     dependencies:
       bignumber.js: 11.1.1
       lodash: 4.18.1
-      make-plural: 8.1.0
+      make-plural: 7.5.0
 
   iconv-lite@0.7.2:
     dependencies:
@@ -2027,7 +2027,7 @@ snapshots:
     dependencies:
       semver: 7.8.0
 
-  make-plural@8.1.0: {}
+  make-plural@7.5.0: {}
 
   merge2@1.4.1: {}
 
