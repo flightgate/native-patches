@@ -1,0 +1,64 @@
+{
+  "name": "@flightgate/native-patches",
+  "version": "0.0.0",
+  "description": "CLI tool to manage native patches for Expo projects",
+  "author": "FlightGate",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flightgate/native-patches"
+  },
+  "homepage": "https://github.com/flightgate/native-patches#readme",
+  "bugs": {
+    "url": "https://github.com/flightgate/native-patches/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "expo",
+    "react-native",
+    "patches",
+    "native",
+    "android",
+    "ios",
+    "flightgate"
+  ],
+  "packageManager": "pnpm@10.28.1",
+  "type": "commonjs",
+  "main": "./dist/plugin/index.js",
+  "bin": {
+    "native-patches": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "lint": "biome check .",
+    "lint:fix": "biome check . --write",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@expo/config-plugins": "55.0.8",
+    "chalk": "5.6.2",
+    "commander": "14.0.3",
+    "i18n-js": "4.5.1",
+    "ora": "9.4.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@changesets/cli": "2.29.8",
+    "@types/node": "25.0.0",
+    "@vitest/coverage-v8": "4.1.2",
+    "husky": "9.1.7",
+    "typescript": "5.9.3",
+    "vitest": "4.1.2"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}
