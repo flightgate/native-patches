@@ -1,0 +1,22 @@
+# Dependencies
+**/node_modules
+**/.pnpm-store
+
+# Build
+**/dist
+
+# SonarQube
+**/.scannerwork
+
+# macos
+**/.DS_Store
+
+# Cursor
+**/.cursor
+**/.cursorrules
+
+# Claude
+**/CLAUDE.md
+
+# Test coverage
+**/coverage
