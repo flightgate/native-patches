@@ -2,6 +2,7 @@ import { createInterface } from 'node:readline';
 import ora from 'ora';
 import { i18n } from '../i18n';
 import type { SpinnerStep } from '../types';
+import { config } from './config';
 
 export const askConfirmation = (question: string): Promise<boolean> => {
   const readline = createInterface({
@@ -18,6 +19,12 @@ export const askConfirmation = (question: string): Promise<boolean> => {
 };
 
 export const runWithSpinner = async (step: SpinnerStep): Promise<void> => {
+  if (config.debug) {
+    console.log(step.text);
+    await step.command();
+    return;
+  }
+
   const spinner = ora(step.text).start();
 
   try {
