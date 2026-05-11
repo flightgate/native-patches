@@ -5,6 +5,7 @@
     "@flightgate/native-patches": "0.0.0"
   },
   "changesets": [
+    "bright-plants-knock",
     "soft-numbers-taste"
   ]
 }
