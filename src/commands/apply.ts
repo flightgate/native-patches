@@ -1,6 +1,7 @@
 import { execSync } from 'node:child_process';
 import { existsSync, readdirSync } from 'node:fs';
 import path from 'node:path';
+import { config } from '../helpers/config';
 import { initGitRepo, removeGitRepo } from '../helpers/git';
 import { getTargetsInfo } from '../helpers/targets';
 import { i18n } from '../i18n';
@@ -60,7 +61,7 @@ export const applyCommand = (target: Target) => {
       try {
         execSync(`git apply "${patchPath}"`, {
           cwd: folder,
-          stdio: 'pipe',
+          stdio: config.stdio,
         });
 
         console.log(i18n.t('success.appliedPatch', { patch }));

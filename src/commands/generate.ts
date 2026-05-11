@@ -1,4 +1,5 @@
 import { execSync } from 'node:child_process';
+import { config } from '../helpers/config';
 import { createFolder } from '../helpers/fs';
 import { hasChanges, removeGitRepo } from '../helpers/git';
 import { getTargetsInfo } from '../helpers/targets';
@@ -25,7 +26,7 @@ export const generateCommand = (target: Target, name: string): void => {
   let totalPatches = 0;
 
   folders.forEach((folder) => {
-    const options = { cwd: folder, stdio: 'inherit' as const };
+    const options = { cwd: folder, stdio: config.stdio };
 
     if (!hasChanges(folder)) {
       console.error(i18n.t('warnings.noChanges', { folder }));

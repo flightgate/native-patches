@@ -1,13 +1,14 @@
 import { execSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+import { config } from './config';
 
 export const isGitRepo = (dir: string): boolean => {
   return existsSync(path.join(dir, '.git'));
 };
 
 export const initGitRepo = (dir: string): void => {
-  const options = { cwd: dir, stdio: 'pipe' as const };
+  const options = { cwd: dir, stdio: config.stdio };
 
   execSync('git init', options);
   execSync('git add .', options);
@@ -31,7 +32,7 @@ export const getCommitCount = (dir: string): number => {
 };
 
 export const removeGitRepo = (dir: string): void => {
-  execSync('rm -rf .git', { cwd: dir, stdio: 'inherit' });
+  execSync('rm -rf .git', { cwd: dir, stdio: config.stdio });
 };
 
 export const hasChanges = (dir: string): boolean => {
