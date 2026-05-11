@@ -5,6 +5,7 @@ import { applyCommand } from './commands/apply';
 import { generateCommand } from './commands/generate';
 import { initCommand } from './commands/init';
 import { resetCommand } from './commands/reset';
+import { config } from './helpers/config';
 
 const program = new Command();
 
@@ -19,7 +20,9 @@ program
   .description('Initialize git repositories in android/ios folders')
   .option('-t, --target <type>', 'Target platform', 'all')
   .option('--clean', 'Clean rebuild')
+  .option('--debug', 'Show all command output')
   .action(async (options) => {
+    config.debug = Boolean(options.debug);
     await initCommand(options.target, options.clean);
   });
 
@@ -29,7 +32,9 @@ program
   .description('Create patches from changes')
   .requiredOption('-n, --name <name>', 'Patch name')
   .option('-t, --target <type>', 'Target platform', 'all')
+  .option('--debug', 'Show all command output')
   .action((options) => {
+    config.debug = Boolean(options.debug);
     generateCommand(options.target, options.name);
   });
 
@@ -38,7 +43,9 @@ program
   .alias('a')
   .description('Apply patches to android/ios')
   .option('-t, --target <type>', 'Target platform', 'all')
+  .option('--debug', 'Show all command output')
   .action((options) => {
+    config.debug = Boolean(options.debug);
     applyCommand(options.target);
   });
 
@@ -47,7 +54,9 @@ program
   .alias('r')
   .description('Remove git repositories')
   .option('-t, --target <type>', 'Target platform', 'all')
+  .option('--debug', 'Show all command output')
   .action((options) => {
+    config.debug = Boolean(options.debug);
     resetCommand(options.target);
   });
 
