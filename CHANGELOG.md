@@ -1,5 +1,13 @@
 # @flightgate/native-patches
 
+## 0.1.0-beta.2
+
+### Patch Changes
+
+- 150ba11: Fix `--debug` mode hanging when subprocess requires user input.
+
+  When using `--debug`, the ora spinner was conflicting with the subprocess stdout, causing interactive prompts (like expo prebuild's uncommitted changes warning) to hang. Spinner is now skipped in debug mode since output is already visible.
+
 ## 0.1.0-beta.1
 
 ### Minor Changes
