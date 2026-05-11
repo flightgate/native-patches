@@ -58,6 +58,14 @@ body:
     validations:
       required: false
 
+  - type: textarea
+    id: possible_fix
+    attributes:
+      label: Possible fix
+      description: If you have ideas on how to fix this, describe them here.
+    validations:
+      required: false
+
   - type: input
     id: version
     attributes:
