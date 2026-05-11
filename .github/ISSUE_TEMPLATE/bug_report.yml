@@ -42,6 +42,22 @@ body:
     validations:
       required: true
 
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Workaround
+      description: Is there a workaround for this issue?
+    validations:
+      required: false
+
+  - type: textarea
+    id: root_cause
+    attributes:
+      label: Root cause
+      description: If you know why this happens, describe it here.
+    validations:
+      required: false
+
   - type: input
     id: version
     attributes:
