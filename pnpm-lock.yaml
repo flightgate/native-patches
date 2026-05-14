@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@expo/config-plugins':
-        specifier: 55.0.8
-        version: 55.0.8
+        specifier: 55.0.9
+        version: 55.0.9
       chalk:
         specifier: 5.6.2
         version: 5.6.2
@@ -194,8 +194,8 @@ packages:
   '@emnapi/wasi-threads@1.2.1':
     resolution: {integrity: sha512-uTII7OYF+/Mes/MrcIOYp5yOtSMLBWSIoLPpcgwipoiKbli6k322tcoFsxoIIxPDqW01SQGAgko4EzZi2BNv2w==}
 
-  '@expo/config-plugins@55.0.8':
-    resolution: {integrity: sha512-8WfWTRntTCcowfOS+tHdB0z98gKetTwktg4G5TWkCkXVa8Jt1NUnvzaaU4UHk2vbR2U4N84RyZJFizSwfF6C9g==}
+  '@expo/config-plugins@55.0.9':
+    resolution: {integrity: sha512-jLfpxru8dTo7eU0cqeTWuQav7byyjb37eF/mbXl1/3eTBHBvFU1VGxpeKxanUdTQAAjqzH8KGgWb0fWcce+z1w==}
 
   '@expo/config-types@55.0.5':
     resolution: {integrity: sha512-sCmSUZG4mZ/ySXvfyyBdhjivz8Q539X1NondwDdYG7s3SBsk+wsgPJzYsqgAG/P9+l0xWjUD2F+kQ1cAJ6NNLg==}
@@ -1455,7 +1455,7 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
-  '@expo/config-plugins@55.0.8':
+  '@expo/config-plugins@55.0.9':
     dependencies:
       '@expo/config-types': 55.0.5
       '@expo/json-file': 10.0.14
