@@ -1,6 +1,6 @@
 {
   "name": "@flightgate/native-patches",
-  "version": "0.1.0-beta.2",
+  "version": "0.1.0-beta.3",
   "description": "CLI tool to manage native patches for Expo projects",
   "author": "FlightGate",
   "license": "MIT",

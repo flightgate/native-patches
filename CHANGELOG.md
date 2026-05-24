@@ -1,5 +1,11 @@
 # @flightgate/native-patches
 
+## 0.1.0-beta.3
+
+### Patch Changes
+
+- bc2a24f: Improve patch application logic to handle already applied patches
+
 ## 0.1.0-beta.2
 
 ### Patch Changes
