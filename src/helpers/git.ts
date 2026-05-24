@@ -35,6 +35,21 @@ export const removeGitRepo = (dir: string): void => {
   execSync('rm -rf .git', { cwd: dir, stdio: config.stdio });
 };
 
+export const getNewFiles = (dir: string, extensions: string[]): string[] => {
+  try {
+    return execSync('git ls-files --others --exclude-standard', {
+      cwd: dir,
+      stdio: 'pipe',
+      encoding: 'utf8',
+    })
+      .split('\n')
+      .map((f) => f.trim())
+      .filter((f) => f && extensions.some((ext) => f.endsWith(ext)));
+  } catch {
+    return [];
+  }
+};
+
 export const hasChanges = (dir: string): boolean => {
   try {
     const status = execSync('git status --porcelain', {

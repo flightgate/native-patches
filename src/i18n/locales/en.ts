@@ -14,6 +14,16 @@ const nextSteps = [
 
 export const en = {
   errors: {
+    xcodeAdd: {
+      noFiles: `{error} No files specified. Use --file <path> to add files.`,
+      noProject: [
+        `{error} No Xcode project found`,
+        '',
+        '  Make sure you run this from your Expo app directory:',
+        '  native-patches xcode-add --file <path-relative-to-ios>',
+      ].join('\n'),
+      fileNotFound: `{error} File not found: ios/%{file}`,
+    },
     resetOperation: `{error} Operation reset`,
     hasCommits: [
       `{error} The %{folder} folder(s) already have uncommitted changes`,
@@ -83,6 +93,15 @@ export const en = {
       other: `{success} Applied %{count} patches`,
     },
     appliedPatch: `  {success} %{patch}`,
+    xcodeAdd: {
+      alreadyAdded: `  {success} %{file} (already in project)`,
+      added: `  {success} %{file}`,
+      summary: {
+        zero: `{success} No files added to Xcode project`,
+        one: `{success} Added %{added} file to Xcode project (%{skipped} already present)`,
+        other: `{success} Added %{added} files to Xcode project (%{skipped} already present)`,
+      },
+    },
   },
   commands: {
     init: '🚀 Initializing Native Patches...',
@@ -92,5 +111,6 @@ export const en = {
     generate: '📦 Generating patches...',
     apply: '🔧 Applying patches...',
     applyByTarget: '🔧 Applying %{count} patch(es) to %{folder}:',
+    xcodeAdd: '🔨 Adding files to Xcode project...',
   },
 };

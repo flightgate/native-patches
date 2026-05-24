@@ -2,10 +2,12 @@ import { execSync } from 'node:child_process';
 import { existsSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { config } from '../helpers/config';
+import { readXcodeFilesManifest } from '../helpers/fs';
 import { initGitRepo, removeGitRepo } from '../helpers/git';
 import { getTargetsInfo } from '../helpers/targets';
 import { i18n } from '../i18n';
 import type { Target } from '../types';
+import { xcodeAddCommand } from './xcode-add';
 
 export const applyCommand = (target: Target) => {
   console.log(i18n.t('commands.apply'));
@@ -55,12 +57,14 @@ export const applyCommand = (target: Target) => {
     );
     console.log();
 
+    const newXcodeFiles = new Set<string>();
+
     patches.forEach((patch) => {
       const patchPath = path.resolve(patchesDir, folder, patch);
 
       try {
         try {
-          execSync(`patch -p1 --dry-run --reverse < "${patchPath}"`, {
+          execSync(`git apply --reverse --check "${patchPath}"`, {
             cwd: folder,
             stdio: 'pipe',
           });
@@ -72,16 +76,20 @@ export const applyCommand = (target: Target) => {
             }),
           );
 
+          for (const file of readXcodeFilesManifest(patchPath)) {
+            newXcodeFiles.add(file);
+          }
+
           totalApplied++;
-          // Patch is not applied yet, continue normally
         } catch {
-          execSync(
-            `patch -p1 --fuzz=3 --no-backup-if-mismatch < "${patchPath}"`,
-            {
-              cwd: folder,
-              stdio: config.stdio,
-            },
-          );
+          execSync(`git apply "${patchPath}"`, {
+            cwd: folder,
+            stdio: config.stdio,
+          });
+
+          for (const file of readXcodeFilesManifest(patchPath)) {
+            newXcodeFiles.add(file);
+          }
 
           console.log(i18n.t('success.appliedPatch', { patch }));
 
@@ -99,6 +107,11 @@ export const applyCommand = (target: Target) => {
     console.log();
 
     removeGitRepo(folder);
+
+    if (newXcodeFiles.size > 0) {
+      xcodeAddCommand([...newXcodeFiles]);
+      console.log();
+    }
   });
 
   if (totalFailed === 0) {

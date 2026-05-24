@@ -5,6 +5,7 @@ import { applyCommand } from './commands/apply';
 import { generateCommand } from './commands/generate';
 import { initCommand } from './commands/init';
 import { resetCommand } from './commands/reset';
+import { xcodeAddCommand } from './commands/xcode-add';
 import { config } from './helpers/config';
 
 const program = new Command();
@@ -58,6 +59,15 @@ program
   .action((options) => {
     config.debug = Boolean(options.debug);
     resetCommand(options.target);
+  });
+
+program
+  .command('xcode-add')
+  .alias('xa')
+  .description('Add source files to the Xcode project (idempotent)')
+  .requiredOption('-f, --file <path...>', 'File path(s) relative to ios/ directory')
+  .action((options) => {
+    xcodeAddCommand(options.file);
   });
 
 program.parse();

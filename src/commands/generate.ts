@@ -1,7 +1,9 @@
 import { execSync } from 'node:child_process';
+import { writeFileSync } from 'node:fs';
+import path from 'node:path';
 import { config } from '../helpers/config';
 import { createFolder } from '../helpers/fs';
-import { hasChanges, removeGitRepo } from '../helpers/git';
+import { getNewFiles, hasChanges, removeGitRepo } from '../helpers/git';
 import { getTargetsInfo } from '../helpers/targets';
 import { i18n } from '../i18n';
 import type { Target } from '../types';
@@ -44,12 +46,24 @@ export const generateCommand = (target: Target, name: string): void => {
       .replace(/:/g, '')
       .replace(/[-T]/g, '_');
 
+    const newXcodeFiles = folder === 'ios'
+      ? getNewFiles(folder, ['.swift', '.m', '.mm', '.h'])
+      : [];
+
     execSync('git add -A', options);
     execSync('git diff --staged > patch.diff', options);
-    execSync(
-      `mv patch.diff ../native-patches/${folder}/${timestamp}-${name}.patch`,
-      options,
-    );
+
+    const baseName = `${timestamp}-${name}`;
+
+    execSync(`mv patch.diff ../native-patches/${folder}/${baseName}.patch`, options);
+
+    if (newXcodeFiles.length > 0) {
+      writeFileSync(
+        path.join('native-patches', folder, `${baseName}.xcode-files`),
+        newXcodeFiles.join('\n'),
+      );
+    }
+
     removeGitRepo(folder);
 
     totalPatches++;
