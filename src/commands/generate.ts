@@ -46,16 +46,20 @@ export const generateCommand = (target: Target, name: string): void => {
       .replace(/:/g, '')
       .replace(/[-T]/g, '_');
 
-    const newXcodeFiles = folder === 'ios'
-      ? getNewFiles(folder, ['.swift', '.m', '.mm', '.h'])
-      : [];
+    const newXcodeFiles =
+      folder === 'ios'
+        ? getNewFiles(folder, ['.swift', '.m', '.mm', '.h'])
+        : [];
 
     execSync('git add -A', options);
     execSync('git diff --staged > patch.diff', options);
 
     const baseName = `${timestamp}-${name}`;
 
-    execSync(`mv patch.diff ../native-patches/${folder}/${baseName}.patch`, options);
+    execSync(
+      `mv patch.diff ../native-patches/${folder}/${baseName}.patch`,
+      options,
+    );
 
     if (newXcodeFiles.length > 0) {
       writeFileSync(

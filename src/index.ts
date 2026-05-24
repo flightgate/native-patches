@@ -65,7 +65,10 @@ program
   .command('xcode-add')
   .alias('xa')
   .description('Add source files to the Xcode project (idempotent)')
-  .requiredOption('-f, --file <path...>', 'File path(s) relative to ios/ directory')
+  .requiredOption(
+    '-f, --file <path...>',
+    'File path(s) relative to ios/ directory',
+  )
   .action((options) => {
     xcodeAddCommand(options.file);
   });

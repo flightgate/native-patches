@@ -1,6 +1,6 @@
-import { IOSConfig } from '@expo/config-plugins';
 import { existsSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
+import { IOSConfig } from '@expo/config-plugins';
 import { i18n } from '../i18n';
 
 const { XcodeUtils, Paths } = IOSConfig;
@@ -59,5 +59,7 @@ export const xcodeAddCommand = (files: string[]) => {
   writeFileSync(pbxprojPath!, project.writeSync());
 
   console.log();
-  console.log(i18n.t('success.xcodeAdd.summary', { count: added, added, skipped }));
+  console.log(
+    i18n.t('success.xcodeAdd.summary', { count: added, added, skipped }),
+  );
 };
