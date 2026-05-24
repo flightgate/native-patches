@@ -60,7 +60,7 @@ export const applyCommand = (target: Target) => {
 
       try {
         try {
-          execSync(`git apply --reverse --check "${patchPath}"`, {
+          execSync(`patch -p1 --dry-run --reverse < "${patchPath}"`, {
             cwd: folder,
             stdio: 'pipe',
           });
@@ -75,10 +75,13 @@ export const applyCommand = (target: Target) => {
           totalApplied++;
           // Patch is not applied yet, continue normally
         } catch {
-          execSync(`git apply "${patchPath}"`, {
-            cwd: folder,
-            stdio: config.stdio,
-          });
+          execSync(
+            `patch -p1 --fuzz=3 --no-backup-if-mismatch < "${patchPath}"`,
+            {
+              cwd: folder,
+              stdio: config.stdio,
+            },
+          );
 
           console.log(i18n.t('success.appliedPatch', { patch }));
 
