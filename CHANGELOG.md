@@ -1,5 +1,11 @@
 # @flightgate/native-patches
 
+## 0.1.0-beta.4
+
+### Patch Changes
+
+- 14fa4f7: Update patch application commands to use 'patch' instead of 'git apply' for improved compatibility
+
 ## 0.1.0-beta.3
 
 ### Patch Changes
