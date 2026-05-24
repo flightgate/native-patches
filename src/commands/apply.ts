@@ -59,14 +59,31 @@ export const applyCommand = (target: Target) => {
       const patchPath = path.resolve(patchesDir, folder, patch);
 
       try {
-        execSync(`git apply "${patchPath}"`, {
-          cwd: folder,
-          stdio: config.stdio,
-        });
+        try {
+          execSync(`git apply --reverse --check "${patchPath}"`, {
+            cwd: folder,
+            stdio: 'pipe',
+          });
 
-        console.log(i18n.t('success.appliedPatch', { patch }));
+          // TODO: move "(already applied)" to translate
+          console.log(
+            i18n.t('success.appliedPatch', {
+              patch: `${patch} (already applied)`,
+            }),
+          );
 
-        totalApplied++;
+          totalApplied++;
+          // Patch is not applied yet, continue normally
+        } catch {
+          execSync(`git apply "${patchPath}"`, {
+            cwd: folder,
+            stdio: config.stdio,
+          });
+
+          console.log(i18n.t('success.appliedPatch', { patch }));
+
+          totalApplied++;
+        }
       } catch {
         console.error(i18n.t('errors.notAppliedPatch', { patch }));
 
